@@ -4,6 +4,7 @@ const connectDB = require("./db/connectDB");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
 connectDB();
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
