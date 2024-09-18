@@ -75,7 +75,3 @@ Thread App Clone là một ứng dụng mạng xã hội được xây dựng đ
 ## Đóng góp
 
 Nếu bạn muốn đóng góp cho dự án, vui lòng tạo một pull request hoặc mở một issue mới trên GitHub.
-
-## Giấy phép
-
-Dự án này được cấp phép theo giấy phép MIT. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
