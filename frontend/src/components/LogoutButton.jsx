@@ -3,7 +3,7 @@ import React from 'react'
 import { useSetRecoilState } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import axios from 'axios'
-
+import { FiLogOut } from "react-icons/fi";
 const LogoutButton = () => {
     const setUser = useSetRecoilState(userAtom)
     const handleLogout = async () => {
@@ -16,7 +16,9 @@ const LogoutButton = () => {
         }
     }
     return (
-        <Button onClick={handleLogout} position={"fixed"} top={"30px"} right={"30px"}>Log out</Button>
+        <Button onClick={handleLogout} position={"fixed"} top={"30px"} right={"30px"}>
+            <FiLogOut size={20}/>
+        </Button>
     )
 }
 
