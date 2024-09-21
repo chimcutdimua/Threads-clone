@@ -29,8 +29,10 @@ export default function LoginCard() {
     const setUser = useSetRecoilState(userAtom)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleLogin = async () => {
+        setLoading(true)
         const body = {
             username: username,
             password: password,
@@ -47,6 +49,8 @@ export default function LoginCard() {
                 duration: 5000,
                 isClosable: true,
             })
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -94,6 +98,7 @@ export default function LoginCard() {
                         </FormControl>
                         <Stack spacing={10} pt={2}>
                             <Button
+                                isLoading={loading}
                                 loadingText="Submitting"
                                 size="lg"
                                 bg={useColorModeValue("gray.600", "gray.700")}

@@ -1,5 +1,6 @@
 const Post = require("../models/postModel");
 const User = require("../models/userModel");
+const cloudinary = require("cloudinary").v2;
 const getPost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -15,7 +16,8 @@ const getPost = async (req, res) => {
 
 const createPost = async (req, res) => {
   try {
-    const { postedBy, text, img } = req.body;
+    const { postedBy, text } = req.body;
+    let { img } = req.body;
     if (!postedBy || !text) {
       return res
         .status(400)
@@ -34,6 +36,12 @@ const createPost = async (req, res) => {
         error: `Text field should not exceed ${maxlength} characters`,
       });
     }
+
+    if (img) {
+      const uploadResponse = await cloudinary.uploader.upload(img);
+      img = uploadResponse.secure_url;
+    }
+
     const newPost = new Post({ postedBy, text, img });
     await newPost.save();
     res.status(201).json({ message: "Post created successfully", newPost });
