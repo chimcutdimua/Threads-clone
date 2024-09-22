@@ -130,9 +130,7 @@ const replyPost = async (req, res) => {
 const getFeed = async (req, res) => {
   try {
     const userId = req.user._id;
-    console.log("userId: ", userId);
     const user = await User.findById(userId);
-    console.log("user: ", user);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -140,7 +138,7 @@ const getFeed = async (req, res) => {
     const newFeed = await Post.find({ postedBy: { $in: following } }).sort({
       createdAt: -1,
     });
-    res.status(200).json({ newFeed });
+    res.status(200).json(newFeed);
   } catch (error) {
     res.status(500).json({ error: error.message });
     console.log("Error in getFeed: ", error.message);

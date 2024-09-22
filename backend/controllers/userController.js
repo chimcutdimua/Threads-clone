@@ -2,13 +2,21 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const cloudinary = require("cloudinary").v2;
 const generateTokenAndSetCookie = require("../utils/helpers/generateTokenAndSetCookie");
+const { default: mongoose } = require("mongoose");
 
 const getProfileUser = async (req, res) => {
-  const { username } = req.params;
+  const { query } = req.params;
   try {
-    const user = await User.findOne({ username })
-      .select("-password")
-      .select("-updatedAt");
+    let user;
+    if (mongoose.Types.ObjectId.isValid(query)) {
+      user = await User.findOne({ _id: query })
+        .select("-password")
+        .select("-updateAt");
+    } else {
+      user = await User.findOne({ username: query })
+        .select("-password")
+        .select("-updatedAt");
+    }
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -151,9 +159,11 @@ const updateUser = async (req, res) => {
 
     if (profilePic) {
       if (user.profilePic) {
-        await cloudinary.uploader.destroy(user.profilePic.split('/').pop().split('.')[0]);
+        await cloudinary.uploader.destroy(
+          user.profilePic.split("/").pop().split(".")[0]
+        );
       }
-      const uploadedResponse = await cloudinary.uploader.upload(profilePic)
+      const uploadedResponse = await cloudinary.uploader.upload(profilePic);
       profilePic = uploadedResponse.secure_url;
     }
 
@@ -164,7 +174,7 @@ const updateUser = async (req, res) => {
     user.profilePic = profilePic || user.profilePic;
 
     user = await user.save();
-    user.password = null
+    user.password = null;
     res.status(200).json({ message: "User updated successfully", user });
   } catch (error) {
     res.status(500).json({ error: error.message });
