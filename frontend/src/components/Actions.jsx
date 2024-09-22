@@ -10,7 +10,7 @@ const Actions = ({ post: post_ }) => {
     const finalRef = useRef(null)
     const [reply, setReply] = useState('')
     const user = useRecoilValue(userAtom)
-    const [liked, setLiked] = useState(post_?.likes.includes(user?._id))
+    const [liked, setLiked] = useState(post_?.likes?.includes(user?._id))
     const [post, setPost] = useState(post_)
     const toast = useToast()
     const handleLikeAndUnlike = async () => {
@@ -117,7 +117,7 @@ const Actions = ({ post: post_ }) => {
             </Flex>
             <Flex>
                 <Text color={"gray.light"} fontSize={"sm"}>
-                    {post?.replies.length} replies
+                    {post?.replies?.length} replies
                 </Text>
                 <Box w={0.5} h={0.5} borderRadius={"full"} bg={"gray.light"}></Box>
                 <Text color={"gray.light"} fontSize={"sm"}>

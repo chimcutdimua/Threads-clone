@@ -2,27 +2,26 @@ import { Avatar, Divider, Flex, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import Actions from './Actions'
+import { formatDistanceToNow } from 'date-fns'
 
-const Comments = () => {
-    const [liked, setLiked] = useState(false)
+const Comments = ({
+    reply,
+    lastReply
+}) => {
     return (
         <>
             <Flex gap={4} py={4} my={4} w={"full"}>
-                <Avatar src='/zuck-avatar.png' size={"sm"} />
+                <Avatar src={reply?.profilePic} size={"sm"} />
                 <Flex gap={1} w={"full"} flexDirection={"column"}>
                     <Flex w={"full"} justifyContent={"space-between"} alignItems={"center"}>
-                        <Text fontSize={"sm"} fontWeight={"bold"}>markzuckerberg</Text>
-                        <Flex gap={2} alignItems={"center"}>
-                            <Text fontSize={"sm"} color={"gray.light"}>2d</Text>
-                            <BsThreeDots />
-                        </Flex>
+                        <Text fontSize={"sm"} fontWeight={"bold"}>{reply?.username}</Text>
+
                     </Flex>
-                    <Text>Hey this looks great</Text>
-                    <Actions liked={liked} setLiked={setLiked} />
-                    <Text fontSize={"sm"} color={"gray.light"}>{(liked ? 1 : 0)} likes</Text>
+                    <Text>{reply?.text}</Text>
+
                 </Flex>
             </Flex>
-            <Divider my={4} />
+            {!lastReply ? <Divider my={4} /> : null}
         </>
     )
 }
