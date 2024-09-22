@@ -6,6 +6,7 @@ const {
   likeAndUnlikePost,
   replyPost,
   getFeed,
+  getUserPosts,
 } = require("../controllers/postController");
 const protectRoute = require("../middleware/protectRoute");
 
@@ -13,9 +14,10 @@ const router = express.Router();
 
 router.get("/feed", protectRoute, getFeed);
 router.get("/:id", getPost);
+router.get("/user/:username", getUserPosts);
 router.post("/create", protectRoute, createPost);
 router.delete("/delete/:id", protectRoute, deletePost);
-router.post("/like/:id", protectRoute, likeAndUnlikePost);
-router.post("/reply/:id", protectRoute, replyPost);
+router.put("/like/:id", protectRoute, likeAndUnlikePost);
+router.put("/reply/:id", protectRoute, replyPost);
 
 module.exports = router;

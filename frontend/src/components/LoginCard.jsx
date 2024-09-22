@@ -27,8 +27,8 @@ export default function LoginCard() {
     const [showPassword, setShowPassword] = useState(false)
     const setAuthScreen = useSetRecoilState(authScreenAtom)
     const setUser = useSetRecoilState(userAtom)
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('kietlee')
+    const [password, setPassword] = useState('123456')
     const [loading, setLoading] = useState(false)
 
     const handleLogin = async () => {
