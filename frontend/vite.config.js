@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "http://localhost:8080",
+        target: "https://threadsbackend-0ubq.onrender.com",
         changeOrigin: true,
         secure: false,
       },
