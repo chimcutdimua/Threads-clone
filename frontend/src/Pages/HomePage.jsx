@@ -2,16 +2,20 @@ import { Flex, Spinner } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Post from '../components/Post'
-import { base_Url } from "../API/api"
+import base_Url from "../API/api"
 
 const HomePage = () => {
     const [post, setPost] = useState([])
     const [loading, setLoading] = useState(true)
+    console.log(`${base_Url}/api/posts/feed`)
     useEffect(() => {
         const postFeed = async () => {
+            const header = {
+                "Content-Type": "application/json",
+            }
             setLoading(true)
             try {
-                const res = await axios.get(`${base_Url}/api/posts/feed`)
+                const res = await axios.get(`${base_Url}/api/posts/feed`, header)
                 console.log(res.data)
                 setPost(res.data)
             } catch (error) {
