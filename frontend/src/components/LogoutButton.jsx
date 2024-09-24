@@ -4,7 +4,7 @@ import { useSetRecoilState } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import axios from 'axios'
 import { FiLogOut } from "react-icons/fi";
-import base_Url from '../utils/baseUrl'
+import base_Url from "../API/api"
 const LogoutButton = () => {
     const setUser = useSetRecoilState(userAtom)
     const handleLogout = async () => {
