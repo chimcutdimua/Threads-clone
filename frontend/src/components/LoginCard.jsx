@@ -38,7 +38,7 @@ export default function LoginCard() {
             password: password,
         }
         try {
-            const res = await axios.post("/api/users/login", body)
+            const res = await axios.post("https://threadsbackend-0ubq.onrender.com/api/users/login", body)
             localStorage.setItem("user-threads", JSON.stringify(res.data))
             setUser(res.data)
         } catch (error) {
