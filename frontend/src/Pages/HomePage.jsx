@@ -2,6 +2,7 @@ import { Flex, Spinner } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Post from '../components/Post'
+import { base_Url } from "../API/api"
 
 const HomePage = () => {
     const [post, setPost] = useState([])
@@ -10,7 +11,7 @@ const HomePage = () => {
         const postFeed = async () => {
             setLoading(true)
             try {
-                const res = await axios.get('/api/posts/feed')
+                const res = await axios.get(`${base_Url}/api/feed`)
                 console.log(res.data)
                 setPost(res.data)
             } catch (error) {
