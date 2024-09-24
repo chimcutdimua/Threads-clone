@@ -11,7 +11,7 @@ const HomePage = () => {
         const postFeed = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`${base_Url}/api/feed`)
+                const res = await axios.get(`${base_Url}/api/posts/feed`)
                 console.log(res.data)
                 setPost(res.data)
             } catch (error) {
