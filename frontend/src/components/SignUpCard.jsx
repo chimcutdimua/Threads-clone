@@ -22,6 +22,7 @@ import authScreenAtom from '../atoms/AuthAtom'
 import { useSetRecoilState } from 'recoil'
 import axios from 'axios'
 import userAtom from '../atoms/userAtom'
+import base_Url from '../API/api'
 
 export default function SignUpCard() {
     const toast = useToast()
@@ -41,7 +42,7 @@ export default function SignUpCard() {
             password: password,
         }
         try {
-            const res = await axios.post("/api/users/signup", body)
+            const res = await axios.post(`${base_Url}/api/users/signup`, body)
             localStorage.setItem("user-threads", JSON.stringify(res.data))
             toast({
                 title: 'Success',

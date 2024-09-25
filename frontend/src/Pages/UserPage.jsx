@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { Flex, Spinner } from '@chakra-ui/react'
 import Post from '../components/Post'
+import base_Url from '../API/api'
 
 axios.defaults.withCredentials = true;
 
@@ -17,7 +18,7 @@ const UserPage = () => {
     const userData = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`/api/users/profile/${username}`)
+            const res = await axios.get(`${base_Url}/api/users/profile/${username}`, { withCredentials: true })
             setUser(res.data)
         } catch (error) {
             console.log(error)
@@ -28,7 +29,7 @@ const UserPage = () => {
 
     const getPost = async () => {
         try {
-            const res = await axios.get(`/api/posts/user/${username}`)
+            const res = await axios.get(`${base_Url}/api/posts/user/${username}`, { withCredentials: true })
             setPosts(res.data)
             console.log(res.data)
         } catch (error) {

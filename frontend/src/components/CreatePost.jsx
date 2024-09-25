@@ -6,6 +6,7 @@ import { BsFillImageFill } from 'react-icons/bs'
 import axios from 'axios'
 import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
+import base_Url from '../API/api'
 
 axios.defaults.withCredentials = true;
 
@@ -44,7 +45,7 @@ const CreatePost = () => {
             img: imgUrl
         }
         try {
-            const res = await axios.post('/api/posts/create', body)
+            const res = await axios.post(`${base_Url}/api/posts/create`, body, { withCredentials: true })
             console.log(res.data)
             toast({
                 title: 'Success',

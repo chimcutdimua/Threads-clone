@@ -10,6 +10,7 @@ import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import { formatDistanceToNow } from 'date-fns'
 import { DeleteIcon } from '@chakra-ui/icons'
+import base_Url from '../API/api'
 
 axios.defaults.withCredentials = true;
 
@@ -25,7 +26,7 @@ const PostPage = () => {
     useEffect(() => {
         const getPosts = async () => {
             try {
-                const res = await axios.get(`/api/posts/${pid}`)
+                const res = await axios.get(`${base_Url}/api/posts/${pid}`, { withCredentials: true })
                 setPost(res.data)
                 console.log(res.data)
             } catch (error) {
@@ -39,7 +40,7 @@ const PostPage = () => {
     const handleDeletePost = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.delete(`/api/posts/delete/${pid}`)
+            const res = await axios.delete(`${base_Url}/api/posts/delete/${pid}`, { withCredentials: true })
             toast({
                 title: 'Post Deleted',
                 description: res.data.message,

@@ -18,6 +18,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import usePreviewImg from '../hooks/usePreviewImg'
 import axios from 'axios'
+import base_Url from '../API/api'
 
 axios.defaults.withCredentials = true;
 
@@ -48,7 +49,7 @@ export default function UpdateProfilePage() {
             profilePic: imgUrl || user.profilePic,
         }
         try {
-            const res = await axios.put('/api/users/update', body)
+            const res = await axios.put(`${base_Url}/api/users/update`, body, { withCredentials: true })
             toast({
                 title: "Success",
                 description: "Profile updated successfully!",
