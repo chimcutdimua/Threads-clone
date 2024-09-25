@@ -12,15 +12,9 @@ const HomePage = () => {
     console.log(`${base_Url}/api/posts/feed`)
     useEffect(() => {
         const postFeed = async () => {
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true, // Ensure credentials are included
-            };
             setLoading(true)
             try {
-                const res = await axios.get(`${base_Url}/api/posts/feed`, config)
+                const res = await axios.get(`${base_Url}/api/posts/feed`, { withCredentials: true })
                 console.log(res.data)
                 setPost(res.data)
             } catch (error) {
