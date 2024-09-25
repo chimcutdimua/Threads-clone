@@ -5,15 +5,18 @@ import userAtom from '../atoms/userAtom'
 import axios from 'axios'
 import { FiLogOut } from "react-icons/fi";
 import base_Url from "../API/api"
+import { useNavigate } from 'react-router-dom'
 
 
 const LogoutButton = () => {
+    const navigate = useNavigate()
     const setUser = useSetRecoilState(userAtom)
     const handleLogout = async () => {
         try {
             const res = await axios.post(`${base_Url}/api/users/logout`)
             localStorage.removeItem('user-threads')
             setUser(null)
+            navigate('/auth')
         } catch (error) {
             console.log(error)
         }

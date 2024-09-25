@@ -38,7 +38,7 @@ const Post = ({
         try {
             e.preventDefault()
             if (!window.confirm('Are you sure you want to delete this post?')) return
-            const res = await axios.delete(`/api/posts/delete/${post._id}`)
+            const res = await axios.delete(`${base_Url}/api/posts/delete/${post._id}`, { withCredentials: true })
             toast({
                 title: 'Post Deleted',
                 description: res.data.message,
