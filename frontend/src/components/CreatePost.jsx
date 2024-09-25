@@ -7,6 +7,8 @@ import axios from 'axios'
 import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
 
+axios.defaults.withCredentials = true;
+
 const MAX_CHAR = 500
 
 const CreatePost = () => {

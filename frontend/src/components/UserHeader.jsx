@@ -7,6 +7,8 @@ import userAtom from '../atoms/userAtom';
 import { Link as RouterLink } from 'react-router-dom'
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 const UserHeader = ({
     user
 }) => {

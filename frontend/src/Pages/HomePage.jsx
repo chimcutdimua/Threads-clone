@@ -4,6 +4,8 @@ import axios from 'axios'
 import Post from '../components/Post'
 import base_Url from "../API/api"
 
+axios.defaults.withCredentials = true;
+
 const HomePage = () => {
     const [post, setPost] = useState([])
     const [loading, setLoading] = useState(true)

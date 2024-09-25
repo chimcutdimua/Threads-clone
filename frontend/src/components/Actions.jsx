@@ -4,6 +4,8 @@ import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import axios from 'axios'
 
+axios.defaults.withCredentials = true;
+
 const Actions = ({ post: post_ }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = useRef(null)

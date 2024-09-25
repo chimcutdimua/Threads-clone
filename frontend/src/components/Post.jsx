@@ -8,6 +8,8 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
 
+axios.defaults.withCredentials = true;
+
 const Post = ({
     post,
     postedBy

@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 import { Flex, Spinner } from '@chakra-ui/react'
 import Post from '../components/Post'
 
+axios.defaults.withCredentials = true;
+
 const UserPage = () => {
     const [user, setUser] = useState(null)
     const { username } = useParams(null)

@@ -11,6 +11,8 @@ import userAtom from '../atoms/userAtom'
 import { formatDistanceToNow } from 'date-fns'
 import { DeleteIcon } from '@chakra-ui/icons'
 
+axios.defaults.withCredentials = true;
+
 const PostPage = () => {
     const { user, loading } = useGetUserProfile()
     const [post, setPost] = useState(null)

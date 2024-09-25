@@ -19,6 +19,8 @@ import userAtom from '../atoms/userAtom'
 import usePreviewImg from '../hooks/usePreviewImg'
 import axios from 'axios'
 
+axios.defaults.withCredentials = true;
+
 export default function UpdateProfilePage() {
     const toast = useToast()
     const user = useRecoilValue(userAtom)
