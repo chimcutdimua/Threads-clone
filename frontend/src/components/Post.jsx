@@ -7,6 +7,8 @@ import { formatDistanceToNow } from 'date-fns'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
+import base_Url from "../API/api"
+
 
 axios.defaults.withCredentials = true;
 
@@ -22,7 +24,7 @@ const Post = ({
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await axios.get(`/api/users/profile/${postedBy}`)
+                const res = await axios.get(`${base_Url}/api/users/profile/${postedBy}`, { withCredentials: true })
                 setUser(res.data)
             } catch (error) {
                 console.error(error)
