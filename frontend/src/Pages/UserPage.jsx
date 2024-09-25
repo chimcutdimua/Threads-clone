@@ -62,7 +62,7 @@ const UserPage = () => {
         <>
             <UserHeader user={user} />
             {posts.map((post) => (
-                <Post key={post._id} post={post} postedBy={post.postedBy} />
+                <Post key={post._id} post={post} getPost={getPost} postedBy={post.postedBy} />
             ))}
         </>
     )

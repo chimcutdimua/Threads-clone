@@ -6,16 +6,18 @@ import Comments from '../components/Comments'
 import useGetUserProfile from '../hooks/useGetUserProfile'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import { formatDistanceToNow } from 'date-fns'
 import { DeleteIcon } from '@chakra-ui/icons'
 import base_Url from '../API/api'
+import postAtom from '../atoms/postAtom'
 
 axios.defaults.withCredentials = true;
 
 const PostPage = () => {
     const { user, loading } = useGetUserProfile()
+    const setPosts = useSetRecoilState(postAtom)
     const [post, setPost] = useState(null)
     const { pid } = useParams()
     const currentUser = useRecoilValue(userAtom)
@@ -28,6 +30,7 @@ const PostPage = () => {
             try {
                 const res = await axios.get(`${base_Url}/api/posts/${pid}`, { withCredentials: true })
                 setPost(res.data)
+                setPosts(res.data)
                 console.log(res.data)
             } catch (error) {
                 console.error(error)

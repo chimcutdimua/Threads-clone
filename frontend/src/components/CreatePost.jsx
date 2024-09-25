@@ -27,7 +27,6 @@ const CreatePost = () => {
         const inputText = e.target.value
         if (inputText.length > MAX_CHAR) {
             const truncatedText = inputText.slice(0, MAX_CHAR)
-            console.log(truncatedText)
             setPost(truncatedText)
             setRemainingChar(0)
         } else {

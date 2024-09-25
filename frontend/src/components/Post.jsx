@@ -8,16 +8,17 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import base_Url from "../API/api"
+import postAtom from '../atoms/postAtom'
 
 
 axios.defaults.withCredentials = true;
 
 const Post = ({
     post,
-    postedBy
+    postedBy,
+    getPost
 }) => {
     const [user, setUser] = useState(null)
-    console.log(post)
     const navigate = useNavigate()
     const currentUser = useRecoilValue(userAtom)
     const toast = useToast()
@@ -46,6 +47,7 @@ const Post = ({
                 duration: 3000,
                 isClosable: true,
             })
+            getPost()
         } catch (error) {
             console.error(error)
         }
