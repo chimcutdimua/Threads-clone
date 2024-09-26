@@ -1,16 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import base_Url from "../API/api";
-import { useRecoilValue } from "recoil";
-import userAtom from "../atoms/userAtom";
 
 axios.defaults.withCredentials = true;
 
 const useGetUserProfile = () => {
   const [user, setUser] = useState(null);
-  const currentUser = useRecoilValue(userAtom);
-  console.log("currentUser", currentUser);
   const [loading, setLoading] = useState(true);
   const { username } = useParams();
 
@@ -19,9 +15,7 @@ const useGetUserProfile = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `${base_Url}/api/users/profile/${
-            username ?? currentUser?.user?.username
-          }`,
+          `${base_Url}/api/users/profile/${username}`,
           { withCredentials: true }
         );
         setUser(res.data);
@@ -32,7 +26,7 @@ const useGetUserProfile = () => {
       }
     };
     userData();
-  }, [username ?? currentUser?.user?.username]);
+  }, [username]);
   return { user, loading };
 };
 
