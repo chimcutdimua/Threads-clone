@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import userAtom from '../atoms/userAtom'
 import axios from 'axios'
+import base_Url from '../API/api'
 
 axios.defaults.withCredentials = true;
 
@@ -27,7 +28,7 @@ const Actions = ({ post: post_ }) => {
             return
         }
         try {
-            const res = await axios.put(`/api/posts/like/${post._id}`)
+            const res = await axios.put(`${base_Url}/api/posts/like/${post._id}`, { withCredentials: true })
             if (!liked) {
                 setPost({ ...post, likes: [...post.likes, user._id] })
             } else {
@@ -55,7 +56,7 @@ const Actions = ({ post: post_ }) => {
             text: reply
         }
         try {
-            const res = await axios.put('/api/posts/reply/' + post._id, body)
+            const res = await axios.put(`${base_Url}/api/posts/reply/` + post._id, body, { withCredentials: true })
             setPost({ ...post, replies: [...post.replies, res.data] })
             toast({
                 title: 'Reply Sent',
