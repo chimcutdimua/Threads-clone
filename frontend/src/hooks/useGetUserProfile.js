@@ -19,7 +19,9 @@ const useGetUserProfile = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `${base_Url}/api/users/profile/${username ?? currentUser.username}`,
+          `${base_Url}/api/users/profile/${
+            username ?? currentUser?.user?.username
+          }`,
           { withCredentials: true }
         );
         setUser(res.data);
@@ -30,7 +32,7 @@ const useGetUserProfile = () => {
       }
     };
     userData();
-  }, [username ?? currentUser.username]);
+  }, [username ?? currentUser?.user?.username]);
   return { user, loading };
 };
 

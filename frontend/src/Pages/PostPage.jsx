@@ -23,7 +23,6 @@ const PostPage = () => {
     const currentUser = useRecoilValue(userAtom)
     const toast = useToast()
     const navigate = useNavigate()
-    console.log(pid)
 
     useEffect(() => {
         const getPosts = async () => {
